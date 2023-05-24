@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -22,3 +23,10 @@ const server = http.createServer(app);
 server.listen(8080, () => {
   console.log("Server running on http://localhost:8080/");
 });
+
+const MONGO_URL =
+  "mongodb://alphezelphaz:BtpPvhkS6U1E3MlA@ac-shdup3b-shard-00-00.ecpbju2.mongodb.net:27017,ac-shdup3b-shard-00-01.ecpbju2.mongodb.net:27017,ac-shdup3b-shard-00-02.ecpbju2.mongodb.net:27017/?ssl=true&replicaSet=atlas-xahl44-shard-0&authSource=admin&retryWrites=true&w=majority";
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URL);
+mongoose.connection.on("error", (error: Error) => console.log(error));
